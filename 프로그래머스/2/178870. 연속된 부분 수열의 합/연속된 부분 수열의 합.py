@@ -10,7 +10,8 @@ def solution(sequence, k):
         if current_sum == k:
             # 현재 윈도우가 k와 같은 경우 길이 비교
             if (right - left) < (best_range[1] - best_range[0]):
-            
+                best_range = [left, right]
+            elif (right - left) == (best_range[1] - best_range[0]) and left < best_range[0]:
                 best_range = [left, right]
 
         if current_sum >= k:
