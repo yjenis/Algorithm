@@ -1,18 +1,24 @@
-def solution(sequence, g):
-    n = len(sequence)
-    best_range = None
+def solution(sequence, k):
+    left, right = 0, 0
+    current_sum = sequence[0]
+    best_range = [0, float('inf')]
+    
+    # right를 움직이면서 current_sum을 더하고 넘치면 left를 움직여서 빼는 게 포인트
+    # left가 right를 초과해서는 안됨
 
-    for start in range(n):
-        current_sum = 0
-        for end in range(start, n):
-            current_sum += sequence[end]
-            if current_sum == g:
-                # 현재 부분 수열의 길이
-                length = end - start
-                if best_range is None or length < best_range[1] - best_range[0] or (length == best_range[1] - best_range[0] and start < best_range[0]):
-                    best_range = [start, end]
-                break
-            elif current_sum > g:
-                break
+    while right < len(sequence):
+        if current_sum == k:
+            # 현재 윈도우가 k와 같은 경우 길이 비교
+            if (right - left) < (best_range[1] - best_range[0]):
+            
+                best_range = [left, right]
 
-    return best_range if best_range is not None else []
+        if current_sum >= k:
+            current_sum -= sequence[left]
+            left += 1
+        else:
+            right += 1
+            if right < len(sequence):
+                current_sum += sequence[right]
+
+    return best_range
