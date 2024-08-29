@@ -1,4 +1,3 @@
-import sys
 def solution(target):
 
     n = max(61, target+1)
