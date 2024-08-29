@@ -19,4 +19,4 @@ def solution(sequence, k):
             elif right - left == best_range[1] - best_range[0] and left < best_range[0]:
                 best_range = [left, right]
 
-    return best_range if best_range is not None else []
+    return best_range 
