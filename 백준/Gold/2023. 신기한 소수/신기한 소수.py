@@ -12,9 +12,10 @@ def isPrime(number):
     return True
 
 
+result=[]
 def dfs(a,cnt):
     if cnt==n:
-        print(a)
+        result.append(a)
         return
 
     odds = [1, 3, 5, 7, 9]
@@ -28,3 +29,7 @@ stack=[7,5,3,2]
 while stack:
     a=stack.pop()
     dfs(a,1)
+
+result.sort()
+for num in result:
+    print(num)
