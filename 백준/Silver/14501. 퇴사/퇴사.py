@@ -1,17 +1,14 @@
-#퇴사 전 최대로 벌기
-N=int(input())
-lst=[list(map(int,input().split())) for _ in range(N)]
-dp=[0]*(N+1)
-max_v=0
+n=int(input())
+days=[list(map(int,input().split())) for _ in range(n)]
 
+# print(days)
+D=[0]*(n+1)
 
-for i in range(N-1,-1,-1): #i는 0-7까지
-    time=i+lst[i][0]
-    #퇴사일 안 넘치면
-    if time<=N:
-        dp[i]=max(lst[i][1]+dp[time], max_v)
-        max_v=dp[i]
+for i in range(n-1,-1,-1):
+    if n-i<days[i][0]:
+        D[i]=D[i+1]
     else:
-        dp[i]=max_v
+        nxt_idx=i+days[i][0]
+        D[i]=max(D[i+1],D[nxt_idx]+days[i][1])
 
-print(max_v)
+print(D[0])
