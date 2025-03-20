@@ -10,7 +10,7 @@ while start<end:
     if numbers[start]+numbers[end]==m:
         cnt+=1
         start+=1
-        end-=1
+        
     elif numbers[start]+numbers[end]<m:
         start+=1
     else:
