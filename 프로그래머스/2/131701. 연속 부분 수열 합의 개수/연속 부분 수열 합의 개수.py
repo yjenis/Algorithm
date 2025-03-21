@@ -4,15 +4,14 @@ def solution(a):
     n=len(a)
     #똑같은게 나오는 순간 멈추기
     for i in range(n): # 기준 값
-        std=a2[i]
+        # std=a2[i]
+        sum=0
         # print('1' ,i, std)
-        answer.add(std)
-        for j in range(1,n): # 누적합
-            std+=a2[i+j]
+        # answer.add(std)
+        for j in range(n): # 누적합
+            sum+=a2[i+j]
             # print('누적합 ',j, std)
-            if std not in answer:
-                answer.add(std)
-            else:
-                continue
+            answer.add(sum)
+
     # print(answer)
     return len(answer)
