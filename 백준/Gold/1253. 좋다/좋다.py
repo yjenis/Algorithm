@@ -1,31 +1,31 @@
 n=int(input())
-numbers=list(map(int,input().split()))
-numbers.sort()
+numbers=list(map(int,input().split( )))
+
+sorted_numbers=sorted(numbers)
+# print(sorted_numbers)
 cnt=0
+# 어떤 수가 서로 다른 두 수의 합
+for now in range(n):
+    target=sorted_numbers[now]
+    i,j=0,n-1
 
-
-#인덱스로 풀기
-
-for i in range(n):
-    target=numbers[i]
-    left,right=0,n-1
-
-    while left<right:
-        if left==i:
-            left+=1
+    while i<j:
+        if i==now:
+            i+=1
             continue
-        if right==i:
-            right-=1
+        if j==now:
+            j-=1
             continue
 
-        if numbers[left]+numbers[right]==target:
-            if left != right:
-                cnt+=1
-                break
+        temp=sorted_numbers[i]+sorted_numbers[j]
 
-        elif numbers[left]+numbers[right]<target:
-            left+=1
+        if temp==target:
+            cnt+=1
+            break
+        elif temp<target:
+            i+=1
+            # print('작아요: ', temp, target)
         else:
-            right-=1
-
+            j-=1
+            # print('커요: ', temp, target)
 print(cnt)
