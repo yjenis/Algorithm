@@ -1,0 +1,11 @@
+# 입양 간 동물 중, 보호 기간이 가장 길었던 두 마리의 아이디와 이름 조회
+with ta as(SELECT a.ANIMAL_ID, a.NAME, b.DATETIME-a.DATETIME as gap
+FROM ANIMAL_INS a
+JOIN ANIMAL_OUTS b
+ON a.ANIMAL_ID=b.ANIMAL_ID
+# WHERE a.ANIMAL_ID='A381217'
+ORDER BY gap DESC
+LIMIT 2)
+
+SELECT ANIMAL_ID,NAME
+FROM ta
