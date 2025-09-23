@@ -1,0 +1,8 @@
+# 아직 입양 못간 동물 중, 가장 오래 보호서에 있던 동물 3마리의 이름과 보호 시작일
+SELECT a.NAME, a.DATETIME
+FROM ANIMAL_INS a
+LEFT JOIN ANIMAL_OUTS b
+on a.ANIMAL_ID=b.ANIMAL_ID
+WHERE b.DATETIME IS NULL
+ORDER BY a.DATETIME
+LIMIT 3
