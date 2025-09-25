@@ -1,0 +1,22 @@
+# 식품분류별로 제일 비싼 식품의 분류, 가격, 이름
+# 단 식품분류가 '과자', '국', '김치', '식용유'인 경우만 출력시켜 주시고 결과는 식품 가격을 기준으로 내림차순 정렬해주세요.
+WITH that AS (
+    SELECT CATEGORY, PRODUCT_NAME, PRICE,
+           MAX(PRICE) OVER (PARTITION BY CATEGORY) AS MAX_PRICE
+    FROM FOOD_PRODUCT
+    WHERE CATEGORY IN ('과자', '국', '김치', '식용유')
+)
+
+SELECT CATEGORY, MAX_PRICE, PRODUCT_NAME
+FROM that
+WHERE PRICE = MAX_PRICE
+ORDER BY MAX_PRICE DESC
+
+
+
+# SELECT CATEGORY, PRICE AS MAX_PRICE, PRODUCT_NAME
+# FROM FOOD_PRODUCT
+# WHERE CATEGORY IN ('과자', '국', '김치', '식용유')
+# GROUP BY CATEGORY
+# HAVING MAX(MAX_PRICE)
+# ORDER BY MAX_PRICE DESC
